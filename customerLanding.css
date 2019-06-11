@@ -18,33 +18,8 @@ header {
 
 }
 
-#ask {
-    border-radius: 5px;
-    border-style: groove;
-    border-color: darkgoldenrod;
-    background-color: rgb(0, 0, 0);
-    background-image: url(https://www.transparenttextures.com/patterns/real-carbon-fibre.png);
-    margin-top: 10%;
-    margin-left: 21%;
-    width: 700px;
-    height: 300px;
-    color: white;
-    text-align: center;
-    padding-top: 8%;
-    font-size: 25px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
 
-#btn {
-    border-radius: 7px;
-    border-color: darkgray;
 
-}
-
-#btn:hover {
-    background-color: darkgreen;
-    color: goldenrod;
-}
 
 
 
