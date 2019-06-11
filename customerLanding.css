@@ -18,6 +18,28 @@ header {
 
 }
 
+#times {
+    background-color: rgb(247, 242, 242);
+    background-image: url("https://www.transparenttextures.com/patterns/real-carbon-fibre.png");
+    border-collapse: collapse;
+    margin-top: 5%;
+    margin-left: 17%;
+    text-align: center;
+}
+
+#times table  {
+    border: 2px solid black;
+  }
+
+  #times td  {
+    border: 2px solid black;
+  }
+
+  #times th  {
+    border: 2px solid black;
+    width: 160px;
+  }
+
 
 
 
