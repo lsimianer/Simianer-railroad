@@ -56,7 +56,40 @@ var firebaseConfig = {
       // guessing on the sub 1 year part, will test tomorrow. stack overflows application was 
       //different but it made sense
       var firstTrain = moment(tNextArrival, "HH:mm:ss" ).subtract(1, "years");
+      console.log(firstTrain);
+      console.log(tNextArrival);
+      //time calc vars
+      var currentTime = moment();
+      var currentTimeCalc = moment().subtract(1, "years");
+      var diffTime = moment().diff(moment(firstTrain), "minutes");
+      var tRemainder = diffTime%tFrequency;
+      var minutesRemaining = tFrequency - tRemainder;
+      //what are we doing with the time vars
+      var nextTRain = moment().add(minutesRemaining, "minutes").format ("hh:mm:ss A");
+      var beforeCalc = moment(firstTrain).diff(currentTimeCalc, "minutes");
+      var beforeMinutes = Math.ceil(moment.duration(beforeCalc).asMinutes());
+      
+      //snaohsot to update time cals
+      if ((currentTimeCalc - firstTrain) < 0) {
+        nextTrain = childSnapshot.val().NextArrival;
+        console.log("Before next arrival");
+        minutesRemaining = beforeMinutes;
+      }
 
-    
+      else {
+        nextTrain = moment().add(minutesRemaining, "minutes").format("HH:mm:ss A");
+        minutesRemaining = tFrequency - tRemainder;
+        console.log(" time calc working")
+      }
+
+      var newRow = $("<tr>");
+        newRow.addClass("row-" + index);
+        var cell1 = $("<td>").append(updateButton);
+        var cell2 = $("<td>").text(childSnapshot.val().name);
+        var cell3 = $("<td>").text(childSnapshot.val().destination);
+        var cell4 = $("<td>").text(childSnapshot.val().frequency);
+        var cell5 = $("<td>").text(nextTrain);
+        var cell6 = $("<td>").text(minutesRemaining);
+        var cell7 = $("<td>").append(removeButton);
 
 
