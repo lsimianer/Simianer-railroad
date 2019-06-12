@@ -1,3 +1,7 @@
+
+
+
+
 var firebaseConfig = {
     apiKey: "AIzaSyDOzIR9gEksJDgYy_zIlxez40xcaRCB5n0",
     authDomain: "lukes-project-df516.firebaseapp.com",
@@ -33,4 +37,14 @@ database.ref().orderByChild("dateAdded").on("child_added", function (snapshot){
         snapshot.val().Frequency + "</td>" + 
         "<td>" + snapshot.val().NextArrival + "</td>");
   });
+
+        function displayTime() {
+            var time = moment().format('HH:mm:ss');
+            $('#clock').html(time);
+            setTimeout(displayTime, 1000);
+        }
+
+        $(document).ready(function() {
+            displayTime();
+        });
 

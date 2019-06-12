@@ -50,3 +50,14 @@ database.ref().orderByChild("dateAdded").on("child_added", function (snapshot){
       snapshot.val().Frequency + "</td>" + 
       "<td>" + snapshot.val().NextArrival + "</td>");
 });
+
+
+function displayTime() {
+    var time = moment().format('HH:mm:ss');
+    $('#clock').html(time);
+    setTimeout(displayTime, 1000);
+}
+
+$(document).ready(function() {
+    displayTime();
+});
