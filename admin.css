@@ -12,7 +12,7 @@ header {
 #logo {
     height: 250px;
     width: 295px;
-    margin-left: 34%;
+    margin-left: 38%;
     margin-top: 0%;
     margin-bottom: 0%;
 
@@ -22,8 +22,8 @@ header {
     background-color: rgb(247, 242, 242);
     background-image: url("https://www.transparenttextures.com/patterns/real-carbon-fibre.png");
     border-collapse: collapse;
-    margin-top: 5%;
-    margin-left: 17%;
+    margin-top: 0%;
+    margin-left: 20%;
     text-align: center;
 }
 
@@ -71,7 +71,7 @@ header {
   }
 
   #submit {
-      margin-left: 39%;
+      margin-left: 43%;
       margin-top: 5px;
       background-color: black;
       color: green;
@@ -90,8 +90,19 @@ header {
 
 
 
+#trainTimes h2 {
+  color:black;
+  margin-top: 4%;
+  margin-bottom: 0%;
+  text-align: center;
 
+}
 
+footer {
+    text-align: center;
+    margin-left: 6%;
+    overflow: hidden;
+}
 
 
 #social {

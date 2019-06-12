@@ -8,9 +8,21 @@ var firebaseConfig = {
     appId: "1:443772255372:web:15882abb7d46dd27"
   };
 
-  
+  firebase.initializeApp(firebaseConfig);
+    var database = firebase.database();
 
 
+$("#submit").on("click", function(event){
+  event.preventDefault();
+  //Get values of the name, Destination, Frequency date, & Next Arrival
+  tName = $("#TrainName").val().trim();
+  tDestination = $("#Destination").val().trim();
+  tFrequency = $("#Frequency").val().trim();
+  tNextArrival = $("#Next-Arrival").val().trim();
+
+  console.log(tName + " " + tDestination + " " + tFrequency + " " + tNextArrival);
+
+});
 
 
 database.ref().orderByChild("dateAdded").on("child_added", function (snapshot){
@@ -21,3 +33,4 @@ database.ref().orderByChild("dateAdded").on("child_added", function (snapshot){
         snapshot.val().Frequency + "</td>" + 
         "<td>" + snapshot.val().NextArrival + "</td>");
   });
+
