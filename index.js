@@ -17,6 +17,12 @@ var tDestination = "";
 var tFrequency = "";
 var tNextArrival = 0;
 
+
+$("#home").on("click", function(event){
+    event.preventDefault();
+})
+
+
 $("#submit").on("click", function(event){
   event.preventDefault();
   //Get values of the name, Destination, Frequency date, & Next Arrival
@@ -60,4 +66,16 @@ function displayTime() {
 
 $(document).ready(function() {
     displayTime();
+    dateDifference();
 });
+
+
+// calc mins away
+var now = time;
+var prev = tNextArrival;
+
+ function dateDifference(startDate, endDate){
+        return moment(startDate).diff(moment(endDate), 'minutes');
+    }
+    console.log(this.dateDifference);
+

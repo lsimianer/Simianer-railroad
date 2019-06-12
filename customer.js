@@ -48,3 +48,7 @@ database.ref().orderByChild("dateAdded").on("child_added", function (snapshot){
             displayTime();
         });
 
+        $("#home").on("click", function(event){
+            event.preventDefault();
+        })
+
