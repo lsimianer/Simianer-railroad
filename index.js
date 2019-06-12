@@ -21,10 +21,42 @@ var firebaseConfig = {
       event.preventDefault();
         console.log("submitted foo");
 
+        //pull value from input and trim whitespace before and after
       var name = $("#trainName").val().trim();
   		var destination = $("#Destination").val().trim();
-  		var firstTime = $("#Next-Arrival").val().trim();
-  		var frequency = $("#Frequency").val().trim();
-  })
+  		var NextArrival = $("#Next-Arrival").val().trim();
+      var frequency = $("#Frequency").val().trim();
+      
+      //push to firebase from inputs upon submit
+      database.ref().push({
+  			name: name,
+  			destination: destination,
+  			NextArrival: NextArrival,
+  			Frequency: Frequency
+  });
 
-  
+      $("#trainName").val("");
+      $("#Destination").val("");
+      $("#Next-Arrival").val("");
+      $("#Frequency").val(""); 
+// if fields blank, no submit = false. all fields required
+      return false;
+    });
+
+    // firebase will order my trains by the date created
+    database.ref().orderByChild("dateAdded").on("child_added", function (childSnapshot) {
+
+      // create an update button?? do i need this functionality.. its midnight, look on readme tomorrow
+      // create a remove button for the fields? video suggested it, but they also used bootstrap. #lazy
+      //go to sleep...
+      // plz
+      
+      var tNextArrival = childSnapshot.val.NextArrival;
+      var tFrequency = parseInt(childSnapshot.val().Frequency);
+      // guessing on the sub 1 year part, will test tomorrow. stack overflows application was 
+      //different but it made sense
+      var firstTrain = moment(tNextArrival, "HH:mm:ss" ).subtract(1, "years");
+
+    
+
+
