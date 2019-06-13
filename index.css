@@ -12,10 +12,9 @@ header {
 #logo {
     height: 250px;
     width: 295px;
-    margin-left: 34%;
+    margin-left: 38%;
     margin-top: 0%;
     margin-bottom: 0%;
-
 }
 
 #ask {
@@ -24,8 +23,8 @@ header {
     border-color: darkgoldenrod;
     background-color: rgb(0, 0, 0);
     background-image: url(https://www.transparenttextures.com/patterns/real-carbon-fibre.png);
-    margin-top: 10%;
-    margin-left: 21%;
+    margin-top: 5%;
+    margin-left: 24%;
     width: 700px;
     height: 300px;
     color: white;
@@ -46,8 +45,10 @@ header {
     color: goldenrod;
 }
 
-
-
+footer {
+    width: 100%;
+    padding-left: 7%;
+}
 
 
 #social {

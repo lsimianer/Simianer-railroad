@@ -14,8 +14,8 @@ var database = firebase.database();
 
 var tName = "";
 var tDestination = "";
-var tFrequency = "";
-var tNextArrival = 0;
+// var tFrequency = 180;
+var tNextArrival = $("#Next-Arrival");
 
 
 $("#home").on("click", function(event){
@@ -25,6 +25,7 @@ $("#home").on("click", function(event){
 
 $("#submit").on("click", function(event){
   event.preventDefault();
+  
   //Get values of the name, Destination, Frequency date, & Next Arrival
   tName = $("#TrainName").val().trim();
   tDestination = $("#Destination").val().trim();
@@ -50,11 +51,36 @@ $("#submit").on("click", function(event){
 
 database.ref().orderByChild("dateAdded").on("child_added", function (snapshot){
   console.log(snapshot.child());
+    
+  var firstTime = snapshot.val().NextArrival;
+    var tFrequency = snapshot.val().Frequency;
+
+    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+    console.log(firstTimeConverted);
+
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+    // get the difference in time
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);  
+
+    //get the remainder = time apart
+    var tRemainder = diffTime % tFrequency;
+    console.log(tRemainder);
+
+    // minutes until next train
+    var tMinutesTillTrain = tFrequency - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
     $("tbody").append("<tr><td>" + 
       snapshot.val().name + "</td>" + "<td>" + 
       snapshot.val().Destination + "</td>" + "<td>" + 
-      snapshot.val().Frequency + "</td>" + 
-      "<td>" + snapshot.val().NextArrival + "</td>");
+      snapshot.val().Frequency + "</td>" + "<td>" +
+      snapshot.val().NextArrival + "</td>" + 
+      "<td>" + tMinutesTillTrain  + "</td>" );
+
+      
 });
 
 
@@ -66,16 +92,42 @@ function displayTime() {
 
 $(document).ready(function() {
     displayTime();
-    dateDifference();
+    // dateDifference();
 });
 
 
 // calc mins away
-var now = time;
-var prev = tNextArrival;
+// var now = time;
+// var prev = tNextArrival;
 
- function dateDifference(startDate, endDate){
-        return moment(startDate).diff(moment(endDate), 'minutes');
-    }
-    console.log(this.dateDifference);
+//  function dateDifference(currentTime, NextArrival){
+//         return moment(currentTime).diff(moment(NextArrival), 'minutes');
+//     }
+//     console.log(this.dateDifference);
 
+// vars for mins away moment js
+//current time
+
+
+// function MinsAway ()
+// var firstTime = snapshot.val().NextArrival;
+// var tFrequnecy = snapshot.val().Frequency;
+
+
+//     var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+//     console.log(firstTimeConverted);
+
+//     var currentTime = moment();
+//     console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+//     // get the difference in time
+//     var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+//     console.log("DIFFERENCE IN TIME: " + diffTime);  
+
+//     //get the remainder = time apart
+//     var tRemainder = diffTime % tFrequency;
+//     console.log(tRemainder);
+
+//     // minutes until next train
+//     var tMinutesTillTrain = tFrequency - tRemainder;
+//     console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);

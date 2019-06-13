@@ -31,12 +31,34 @@ $("#submit").on("click", function(event){
 
 database.ref().orderByChild("dateAdded").on("child_added", function (snapshot){
     console.log(snapshot.child());
-      $("tbody").append("<tr><td>" + 
-        snapshot.val().name + "</td>" + "<td>" + 
-        snapshot.val().Destination + "</td>" + "<td>" + 
-        snapshot.val().Frequency + "</td>" + 
-        "<td>" + snapshot.val().NextArrival + "</td>");
-  });
+    var firstTime = snapshot.val().NextArrival;
+    var tFrequency = snapshot.val().Frequency;
+
+    var firstTimeConverted = moment(firstTime, "HH:mm").subtract(1, "years");
+    console.log(firstTimeConverted);
+
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+    // get the difference in time
+    var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);  
+
+    //get the remainder = time apart
+    var tRemainder = diffTime % tFrequency;
+    console.log(tRemainder);
+
+    // minutes until next train
+    var tMinutesTillTrain = tFrequency - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+    $("tbody").append("<tr><td>" + 
+      snapshot.val().name + "</td>" + "<td>" + 
+      snapshot.val().Destination + "</td>" + "<td>" + 
+      snapshot.val().Frequency + "</td>" + "<td>" +
+      snapshot.val().NextArrival + "</td>" + 
+      "<td>" + tMinutesTillTrain  + "</td>" );    
+});
 
         function displayTime() {
             var time = moment().format('HH:mm:ss');

@@ -106,6 +106,24 @@ header {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
+#twoHome {
+  margin-left: 44.5%;
+  margin-top: 5px;
+  background-color: black;
+  color: green;
+  border-radius: 7px;
+  width: 150px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+#twoHome:hover {
+  background-color: darkgreen;
+  color: goldenrod;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+
+
 
 
 
